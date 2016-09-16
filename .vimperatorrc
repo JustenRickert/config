@@ -1,0 +1,70 @@
+" colorscheme
+colorscheme indigo-fx3
+
+" Titlebar
+set titlestring="Fyrfux"
+
+" open new window
+map <C-n> :window open 
+
+" max speed
+noremap j 3j
+noremap k 3k
+
+" for normal speed
+noremap <S-j> j
+noremap <S-k> k
+
+" unfocused new tab
+map T :tabopen!
+
+" leader commands
+let mapleader = ","
+nnoremap <leader>/ :nohlsearch<cr>
+
+" tab detach
+map <leader>d :tabdetach<cr>
+map <leader>a :tabattach<space><tab>
+
+" tab move
+map <leader>tp :tabm -
+map <leader>tf :tabm +
+
+" google translate fr to en
+map <leader>fr :tabopen https://translate.google.com/#fr/en/
+
+" google translate en to fr
+map <leader>en :tabopen https://translate.google.com/#en/fr/
+
+" javascript to hide statusbar
+noremap <silent> <leader><leader> :js toggle_bottombar()<CR>
+noremap : :js toggle_bottombar('on')<CR>:
+noremap o :js toggle_bottombar('on')<CR>o
+noremap O :js toggle_bottombar('on')<CR>O
+noremap t :js toggle_bottombar('on')<CR>t
+"   unfocused tab
+noremap T :js toggle_bottombar('on')<CR>:tabopen!
+noremap / :js toggle_bottombar('on')<CR>/
+cnoremap <CR> <CR>:js toggle_bottombar('off')<CR>
+cnoremap <Esc> <Esc>:js toggle_bottombar('off')<CR>
+
+:js << EOF
+function toggle_bottombar(p) {
+    var bb = document.getElementById('liberator-bottombar');
+    if (!bb)
+      return;
+    if (p == 'on'){
+      bb.style.height = '';
+      bb.style.overflow = '';
+      return;
+    }
+    if (p == 'off'){
+      bb.style.height = '0px';
+      bb.style.overflow = 'hidden';
+      return;
+    }
+    bb.style.height = (bb.style.height == '') ? '0px' : '';
+    bb.style.overflow = (bb.style.height == '') ? '' : 'hidden';
+}
+toggle_bottombar();
+EOF
