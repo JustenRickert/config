@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# This makes it so if I'm typing, then I can't accidentally click the pad.
+syndaemon -i 1.75 -t -d -k &
+
+# increase touchpad and track point sensitivity / speed
+xinput --set-prop 'SynPS/2 Synaptics TouchPad' 'Device Accel Constant Deceleration' 1.5 &
+xinput --set-prop 'TPPS/2 IBM TrackPoint' 'Device Accel Constant Deceleration' 0.35 &
+
+# increase repeat rate
+#           DELAY  RATE
+xset r rate 200 45 &
+
+# horizontal scrolling
+synclient HorizTwoFingerScroll=1 &
+
+xautolock -detectsleep \
+          -time 60 -locker 'systemctl suspend && gnome-screensaver-command -l' \
+          -notify 120 \
+          -notifier "notify-send -u normal -- 'LOCKING screen in 2 minutes.'" &
+
+# starts dropbox
+dropbox start &
+
+# redshift is like f.lux. I like it, because I think it helps me sleep at night.
+redshift -l 44:-93 &
+
+# battery - gives battery info to i3bar, and also gives me notifications
+sh ~/.batt.sh &
+sh ~/.battnoti.sh &
+
+# keyboard
+# swaps capslock and escape keys
+sh ~/.capsescmove.sh &
+
+# rofi is a dmenu replacement that is pretty interesting. Config is located in
+# .Xresources. Maybe consider moving that to the .config directory. i3 is there
+# after all.
+rofi -key-run mod4+e -key-window mod4+apostrophe &
+
+exec i3
