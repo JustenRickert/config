@@ -1,0 +1,20 @@
+------------------------------------------------------------------------------
+! ROFI Color theme
+! ------------------------------------------------------------------------------
+rofi.color-enabled: true
+rofi.color-window: #273238, #273238, #1e2529
+rofi.color-normal: #273238, #c1c1c1, #273238, #394249, #ffffff
+rofi.color-active: #273238, #d1e2f1, #273238, #394249, #80cbc4
+rofi.color-urgent: #273238, #ff1844, #273238, #394249, #ff1844
+
+rofi.kb-remove-word-back: Control+w
+rofi.font: Source Sans Pro Mono 9
+rofi.terminal: gnome-terminal
+rofi.location: 7
+
+! rofi.lines:		10
+! rofi.eh:		2
+! rofi.width:		100
+! rofi.padding:	800
+! rofi.opacity:	95
+! rofi.bw:		0
