@@ -14,8 +14,9 @@ xset r rate 200 45 &
 # horizontal scrolling
 synclient HorizTwoFingerScroll=1 &
 
-xautolock -detectsleep \
-          -time 60 -locker 'systemctl suspend && gnome-screensaver-command -l' \
+xautolock -time 30 \
+          -detectsleep \
+          -locker 'systemctl suspend && gnome-screensaver-command -l' \
           -notify 120 \
           -notifier "notify-send -u normal -- 'LOCKING screen in 2 minutes.'" &
 
@@ -32,10 +33,10 @@ sh ~/.battnoti.sh &
 # keyboard
 # swaps capslock and escape keys
 sh ~/.capsescmove.sh &
+# I don't think I can do it this way. I can't get escape on the lwin key
+# setxkbmap us -variant dvorak -option caps:hyper caps:swapesc
 
 # rofi is a dmenu replacement that is pretty interesting. Config is located in
 # .Xresources. Maybe consider moving that to the .config directory. i3 is there
 # after all.
 rofi -key-run mod4+e -key-window mod4+apostrophe &
-
-exec i3
